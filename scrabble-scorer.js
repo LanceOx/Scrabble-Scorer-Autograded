@@ -1,5 +1,7 @@
 // This assignment is inspired by a problem on Exercism (https://exercism.org/tracks/javascript/exercises/etl) that demonstrates Extract-Transform-Load using Scrabble's scoring system. 
 
+// FUNCTION  VARIABLE SHADOWING?
+
 const input = require("readline-sync");
 
 const oldPointStructure = {
@@ -58,19 +60,10 @@ function vowelBonusScorer(word) {
    return score;
 }
    function scrabbleScorer(word) {
-//       word = word.toUpperCase();
-//       let score = 0;
 
-//        for (let letter in word) {
-//          if (letter >= 'A' && letter <+ 'Z'){
-//             score += 1;
-//          }
-//        }
-//        return score;
-// }
       word = word.toUpperCase();
       let score = 0;
-  
+                                                      //hasOwnProperty instances returns a boolean indicating whether this object has the specified property as its own property
       for (let letter of word) {
           if (newPointStructure.hasOwnProperty(letter)) {
               score += newPointStructure[letter];
@@ -106,7 +99,7 @@ const scoringAlgorithms = [
        }
    ];
 
-
+//The parseInt() function parses a string argument and returns an integer of the specified
 function scorerPrompt() {
    console.log("Choose a scoring algorithm:");
 
@@ -129,7 +122,7 @@ function transform(oldPointStructure) {
        let letters = oldPointStructure[pointValue];
        for (let i = 0; i < letters.length; i++) {
            let letter = letters[i].toLowerCase();
-           newPointStructure[letter] = parseInt(pointValue);
+            newPointStructure[letter] = parseInt(pointValue);
        }
    }
    return newPointStructure;
@@ -146,6 +139,7 @@ function runProgram() {
       console.log(`Scoring Algorithm: ${selectedScorer.name}`);
       console.log(`Description: ${selectedScorer.description}`)
       console.log(`Score for ${word}: ${score}`);
+      
 
 }
 
