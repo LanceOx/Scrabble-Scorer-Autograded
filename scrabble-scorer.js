@@ -61,7 +61,7 @@ function vowelBonusScorer(word) {
 }
    function scrabbleScorer(word) {
 
-      word = word.toUpperCase();
+      word = word.toLowerCase();
       let score = 0;
                                                       //hasOwnProperty instances returns a boolean indicating whether this object has the specified property as its own property
       for (let letter of word) {
@@ -82,21 +82,21 @@ function initialPrompt() {
 };
 
 const scoringAlgorithms = [
-      { 
-         name: "Old Scrabble Scorer", 
-         description: "The traditional scrabble scorer ",
-         scoreFunction: scrabbleScorer 
-      },
-      {
+     {
           name: "Simple Scorer",
           description: "Each letter is worth 1 point ", 
-          scoreFunction: simpleScorer 
+          scorerFunction: simpleScorer 
       },
       { 
          name: "Bonus Vowel Scorer", 
          description: "Each vowel is worth 3pts and consonants are worth 1pt ", 
-         scoreFunction: vowelBonusScorer
-       }
+         scorerFunction: vowelBonusScorer
+       }, 
+       { 
+         name: "Old Scrabble Scorer", 
+         description: "The traditional scrabble scorer ",
+         scorerFunction: scrabbleScorer 
+      },
    ];
 
 //The parseInt() function parses a string argument and returns an integer of the specified
@@ -134,8 +134,8 @@ let newPointStructure = transform(oldPointStructure);
 function runProgram() {
   const word = initialPrompt();
   const selectedScorer = scorerPrompt();
-  const scoreFunction = selectedScorer.scoreFunction;
-  let score = scoreFunction(word);
+  const scorerFunction = selectedScorer.scorerFunction;
+  let score = scorerFunction(word);
       console.log(`Scoring Algorithm: ${selectedScorer.name}`);
       console.log(`Description: ${selectedScorer.description}`)
       console.log(`Score for ${word}: ${score}`);
